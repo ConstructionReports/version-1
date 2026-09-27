@@ -1,30 +1,17 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { crewTotal, formatDate } from "../lib/format";
+import { filterReportsByQuery } from "../lib/search";
 import { getProject, listReports } from "../lib/storage";
 
 export function ReportsPage() {
   const [query, setQuery] = useState("");
   const reports = listReports();
 
-  const filtered = useMemo(() => {
-    const needle = query.trim().toLowerCase();
-    if (!needle) return reports;
-    return reports.filter((report) => {
-      const project = getProject(report.projectId);
-      const hay = [
-        report.workCompleted,
-        report.author,
-        report.status,
-        project?.name,
-        project?.number,
-        project?.city,
-      ]
-        .join(" ")
-        .toLowerCase();
-      return hay.includes(needle);
-    });
-  }, [query, reports]);
+  const filtered = useMemo(
+    () => filterReportsByQuery(reports, query, getProject),
+    [query, reports],
+  );
 
   return (
     <div>
@@ -41,7 +28,7 @@ export function ReportsPage() {
       <div className="search">
         <input
           aria-label="Search reports"
-          placeholder="Search job, author, or work in place"
+          placeholder="Search job, author, work, delays, safety, or notes"
           value={query}
           onChange={(event) => setQuery(event.target.value)}
         />

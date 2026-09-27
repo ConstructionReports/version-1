@@ -31,6 +31,21 @@ describe("report storage", () => {
     expect(store.reports.length).toBeGreaterThan(0);
   });
 
+  it("keeps the v1 localStorage key and three Southwest jobs", () => {
+    const store = loadStore();
+    expect(localStorage.getItem("construction-reports.v1")).toBeTruthy();
+    expect(store.projects.map((project) => project.id).sort()).toEqual([
+      "proj-i10",
+      "proj-ridge",
+      "proj-rio-verde",
+    ]);
+    expect(store.projects.map((project) => project.city).sort()).toEqual([
+      "Phoenix",
+      "Phoenix",
+      "Scottsdale",
+    ]);
+  });
+
   it("saves and reads a report", () => {
     saveReport(sample);
     const found = getReport(sample.id);
