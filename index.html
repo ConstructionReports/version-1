@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apex Construction & Contracting</title>
+  <style>
+    /* CSS RESET & VARIABLES */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    :root {
+      --primary: #1e293b;   /* Dark Navy */
+      --accent: #f59e0b;    /* Construction Amber/Gold */
+      --light: #f8fafc;     /* Soft White background */
+      --text: #334155;      /* Slate Gray text */
+    }
+
+    body {
+      background-color: var(--light);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* HEADER & NAVIGATION */
+    header {
+      background: var(--primary);
+      color: #fff;
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    /* HERO SECTION */
+    .hero {
+      background: linear-gradient(rgba(30, 41, 59, 0.85), rgba(30, 41, 59, 0.85)), 
+                  url('https://images.unsplash.com/photo-1541888946425-d0fbb186a5b3?auto=format&fit=crop&w=1600&q=80') center/cover;
+      color: #fff;
+      padding: 6rem 5% 5rem;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      color: #cbd5e1;
+    }
+
+    .btn {
+      background: var(--accent);
+      color: #000;
+      padding: 0.8rem 1.8rem;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn:hover {
+      background: #d97706;
+    }
+
+    /* CONTAINER & SECTIONS */
+    .section {
+      padding: 4rem 5%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 2.5rem;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 4px;
+      background: var(--accent);
+      margin: 0.5rem auto 0;
+    }
+
+    /* SERVICES GRID */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .service-card {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 8px;
+      border-top: 4px solid var(--accent);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+
+    .service-card h3 {
+      color: var(--primary);
+      margin-bottom: 0.75rem;
+    }
+
+    /* PROJECTS GALLERY */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .project-info {
+      padding: 1.25rem;
+    }
+
+    .project-info h4 {
+      color: var(--primary);
+      margin-bottom: 0.25rem;
+    }
+
+    /* CONTACT & FOOTER */
+    .contact-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      background: #fff;
+      padding: 2.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+    }
+
+    .form-group input, 
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+
+    footer {
+      background: var(--primary);
+      color: #94a3b8;
+      text-align: center;
+      padding: 2rem 5%;
+      margin-top: 4rem;
+      font-size: 0.9rem;
+    }
+
+    /* MOBILE RESPONSIVE ADJUSTMENTS */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      nav a {
+        margin: 0 0.75rem;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">APEX <span>CONSTRUCTION</span></div>
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Estimate</a>
+    </nav>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <h1>Quality Craftsmanship, Built to Last</h1>
+    <p>Residential & Commercial General Contracting. Quality service from estimate to completion.</p>
+    <a href="#contact" class="btn">Request a Free Estimate</a>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="section">
+    <h2 class="section-title">Our Services</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <h3>General Contracting</h3>
+        <p>Full project oversight, scheduling, sub-trade management, and quality control from foundation to finish.</p>
+      </div>
+      <div class="service-card">
+        <h3>Remodels & Renovations</h3>
+        <p>Kitchen, bath, and full home remodels designed to enhance functional space and increase home value.</p>
+      </div>
+      <div class="service-card">
+        <h3>Custom Builds & Framing</h3>
+        <p>Structural additions, custom framing, outdoor builds, decks, and specialized structural framing.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECENT PROJECTS -->
+  <section id="projects" class="section">
+    <h2 class="section-title">Recent Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" alt="Home Remodel">
+        <div class="project-info">
+          <h4>Custom Kitchen Remodel</h4>
+          <p>Full interior layout redesign & custom cabinetry installation.</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=600&q=80" alt="Framing Project">
+        <div class="project-info">
+          <h4>Residential Framing Build</h4>
+          <p>New structural framing addition for a two-story residence.</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80" alt="Outdoor Space">
+        <div class="project-info">
+          <h4>Custom Patio & Outdoor Space</h4>
+          <p>Framed outdoor living space with custom wood finishing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT / ESTIMATE FORM -->
+  <section id="contact" class="section">
+    <h2 class="section-title">Get a Quote</h2>
+    <div class="contact-container">
+      <div>
+        <h3>Let's Talk About Your Project</h3>
+        <p style="margin-top: 0.5rem; margin-bottom: 1.5rem;">Fill out the form to schedule an on-site evaluation or estimate consultation.</p>
+        <p><strong>Phone:</strong> (555) 019-2834</p>
+        <p><strong>Email:</strong> contact@apexconstruction.com</p>
+        <p><strong>Service Area:</strong> Local & Surrounding Counties</p>
+      </div>
+      <form onsubmit="event.preventDefault(); alert('Estimate request submitted!');">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" required placeholder="John Doe">
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" required placeholder="(555) 000-0000">
+        </div>
+        <div class="form-group">
+          <label for="details">Project Details</label>
+          <textarea id="details" rows="4" placeholder="Describe the job, location, and preferred timeline..."></textarea>
+        </div>
+        <button type="submit" class="btn" style="width: 100%;">Submit Request</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2026 Apex Construction LLC. All Rights Reserved. Licensed & Insured.</p>
+  </footer>
+
+</body>
+</html>
