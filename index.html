@@ -203,6 +203,44 @@
       font-size: 1rem;
     }
 
+    .form-group input.is-invalid,
+    .form-group textarea.is-invalid {
+      border-color: #b91c1c;
+    }
+
+    .form-error {
+      display: none;
+      color: #b91c1c;
+      font-size: 0.875rem;
+      margin-top: 0.4rem;
+    }
+
+    .form-error.is-visible {
+      display: block;
+    }
+
+    .quote-success {
+      display: none;
+      background: #ecfdf5;
+      border: 1px solid #6ee7b7;
+      border-left: 4px solid #059669;
+      border-radius: 8px;
+      padding: 1.5rem;
+      color: var(--primary);
+    }
+
+    .quote-success.is-visible {
+      display: block;
+    }
+
+    .quote-success h3 {
+      margin-bottom: 0.5rem;
+    }
+
+    form.is-hidden {
+      display: none;
+    }
+
     footer {
       background: var(--primary);
       color: #94a3b8;
@@ -304,21 +342,27 @@
         <p><strong>Email:</strong> contact@apexconstruction.com</p>
         <p><strong>Service Area:</strong> Local & Surrounding Counties</p>
       </div>
-      <form onsubmit="event.preventDefault(); alert('Estimate request submitted!');">
+      <form id="quote-form" novalidate>
         <div class="form-group">
           <label for="name">Full Name</label>
-          <input type="text" id="name" required placeholder="John Doe">
+          <input type="text" id="name" name="name" placeholder="John Doe" autocomplete="name" aria-required="true" aria-describedby="name-error">
+          <p id="name-error" class="form-error" role="alert"></p>
         </div>
         <div class="form-group">
           <label for="phone">Phone Number</label>
-          <input type="tel" id="phone" required placeholder="(555) 000-0000">
+          <input type="tel" id="phone" name="phone" placeholder="(555) 000-0000" autocomplete="tel" aria-required="true" aria-describedby="phone-error">
+          <p id="phone-error" class="form-error" role="alert"></p>
         </div>
         <div class="form-group">
           <label for="details">Project Details</label>
-          <textarea id="details" rows="4" placeholder="Describe the job, location, and preferred timeline..."></textarea>
+          <textarea id="details" name="details" rows="4" placeholder="Describe the job, location, and preferred timeline..."></textarea>
         </div>
         <button type="submit" class="btn" style="width: 100%;">Submit Request</button>
       </form>
+      <div id="quote-success" class="quote-success" role="status" aria-live="polite">
+        <h3>Estimate request received</h3>
+        <p>Thanks for reaching out to Apex Construction. We have your request and will follow up shortly to schedule an on-site evaluation.</p>
+      </div>
     </div>
   </section>
 
@@ -326,6 +370,66 @@
   <footer>
     <p>&copy; 2026 Apex Construction LLC. All Rights Reserved. Licensed & Insured.</p>
   </footer>
+
+  <script>
+    (function () {
+      var form = document.getElementById('quote-form');
+      var success = document.getElementById('quote-success');
+      var nameInput = document.getElementById('name');
+      var phoneInput = document.getElementById('phone');
+      var nameError = document.getElementById('name-error');
+      var phoneError = document.getElementById('phone-error');
+
+      function setFieldError(input, errorEl, message) {
+        if (message) {
+          errorEl.textContent = message;
+          errorEl.classList.add('is-visible');
+          input.classList.add('is-invalid');
+          input.setAttribute('aria-invalid', 'true');
+        } else {
+          errorEl.textContent = '';
+          errorEl.classList.remove('is-visible');
+          input.classList.remove('is-invalid');
+          input.removeAttribute('aria-invalid');
+        }
+      }
+
+      function validateRequired(input, errorEl, label) {
+        var value = (input.value || '').trim();
+        if (!value) {
+          setFieldError(input, errorEl, label + ' is required.');
+          return false;
+        }
+        setFieldError(input, errorEl, '');
+        return true;
+      }
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        var nameOk = validateRequired(nameInput, nameError, 'Full Name');
+        var phoneOk = validateRequired(phoneInput, phoneError, 'Phone Number');
+        if (!nameOk || !phoneOk) {
+          var firstInvalid = !nameOk ? nameInput : phoneInput;
+          firstInvalid.focus();
+          return;
+        }
+        form.classList.add('is-hidden');
+        success.classList.add('is-visible');
+      });
+
+      nameInput.addEventListener('input', function () {
+        if (nameError.classList.contains('is-visible')) {
+          validateRequired(nameInput, nameError, 'Full Name');
+        }
+      });
+
+      phoneInput.addEventListener('input', function () {
+        if (phoneError.classList.contains('is-visible')) {
+          validateRequired(phoneInput, phoneError, 'Phone Number');
+        }
+      });
+    })();
+  </script>
 
 </body>
 </html>
