@@ -1,7 +1,10 @@
 import { NavLink, Outlet } from "react-router-dom";
 import { resetStore } from "../lib/storage";
+import { useManager } from "../lib/useManager";
 
 export function AppShell() {
+  const { manager, managers, switchManager } = useManager();
+
   return (
     <div className="app-shell">
       <header className="app-topbar">
@@ -9,17 +12,33 @@ export function AppShell() {
           <span className="mark">C</span>
           Construction Reports
         </NavLink>
-        <NavLink className="btn" to="/app/reports/new">
-          New daily report
-        </NavLink>
+        <div className="actions">
+          <label className="manager-switch">
+            <span className="meta">Manager</span>
+            <select
+              aria-label="Current manager"
+              value={manager.id}
+              onChange={(event) => switchManager(event.target.value)}
+            >
+              {managers.map((item) => (
+                <option key={item.id} value={item.id}>
+                  {item.name}
+                </option>
+              ))}
+            </select>
+          </label>
+          <NavLink className="btn" to="/app/trackers/new">
+            New tracker
+          </NavLink>
+        </div>
       </header>
       <div className="app-frame">
         <aside className="sidebar">
           <NavLink end to="/app">
-            Board
+            Job Trackers
           </NavLink>
-          <NavLink to="/app/reports">All reports</NavLink>
-          <NavLink to="/app/reports/new">File a report</NavLink>
+          <NavLink to="/app/people">People</NavLink>
+          <NavLink to="/app/import-export">Import / Export</NavLink>
           <button
             className="linkish"
             type="button"

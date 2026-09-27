@@ -6,67 +6,68 @@ export function LandingPage() {
       <div className="stripe" />
       <section className="hero">
         <div>
-          <p className="kicker">Field log · Version 1</p>
-          <h1>The day on the job, written once and kept.</h1>
+          <p className="kicker">Construction management · small bench</p>
+          <h1>Job Trackers the office and the field can share.</h1>
           <p className="lede">
-            Construction Reports is the daily jobsite log for superintendents.
-            Crew counts, weather, work in place, delays, and safety — filed
-            before the trucks leave the gate.
+            A compact book for a few managers: file the day, assign employee
+            profiles, leave notes for each other, sign the record, and move the
+            same data through Excel.
           </p>
           <div className="hero-actions">
             <Link className="btn" to="/app">
-              Open the sample jobs
+              Open Job Trackers
             </Link>
-            <a className="btn secondary" href="#product">
-              See what gets captured
-            </a>
+            <Link className="btn secondary" to="/app/import-export">
+              Import / Export files
+            </Link>
           </div>
         </div>
-        <article className="hero-card" aria-label="Sample daily report">
+        <article className="hero-card" aria-label="Sample job tracker">
           <header>
             <div>
               <strong>Rio Verde Medical Pavilion</strong>
               <div className="meta">CR-2604 · Scottsdale, AZ</div>
             </div>
-            <span className="status submitted">Submitted</span>
+            <span className="status signed">Signed</span>
           </header>
-          <p className="meta">Sat, Sep 26, 2026 · Clear · 98° / 74°</p>
+          <p className="meta">Sat, Sep 26, 2026 · 05:30–16:45 · Clear 98° / 74°</p>
           <p>
-            Placed 86 CY of slab-on-grade at Level 1 west wing. Formwork
-            stripped at east stair core. Underground electrical rough-in
-            completed through gridline D.
+            Placed 86 CY of slab-on-grade at Level 1 west wing. Heat rest cycle
+            logged. Ready-mix delay 1.2 hours.
           </p>
-          <p className="meta">Crew on site: 23 · Maya Ortiz</p>
+          <p className="meta">Assigned: Ortiz, Herrera, Cho, Wright · Maya signed</p>
         </article>
       </section>
 
       <section className="section" id="product">
         <p className="kicker">What the book keeps</p>
-        <h2>A report the office can trust.</h2>
+        <h2>Standard jobsite fields, our own shape.</h2>
         <p className="lede">
-          Built for commercial work in the Southwest. Fast enough for the
-          pickup, complete enough for the owner meeting.
+          Drawn from how Raken, Procore, Contractor Foreman, and common GC Excel
+          dailies collect the day — then kept small enough for a handful of
+          managers.
         </p>
         <div className="cards" style={{ marginTop: 28 }}>
           <article className="card">
-            <h3>Crew and trades</h3>
+            <h3>Job Trackers</h3>
             <p className="muted">
-              Headcount by trade so labor, billing, and look-aheads stay
-              honest.
+              Date and time, job name and number, weather, work, delays,
+              visitors, equipment, materials, inspections, and non-standard
+              safety items.
             </p>
           </article>
           <article className="card">
-            <h3>Work in place</h3>
+            <h3>People</h3>
             <p className="muted">
-              What moved today, in the superintendent's own words — not a
-              checklist nobody reads.
+              Profiles with trade, role, phone, hire date, emergency contact,
+              and certs. Drop them onto a tracker when they are on the job.
             </p>
           </article>
           <article className="card">
-            <h3>Delays and safety</h3>
+            <h3>Excel + e-sign</h3>
             <p className="muted">
-              Weather, trucks, inspectors, near misses. The record you wish
-              you had six months later.
+              Import and export .xlsx with stable headers. Signature pad and
+              intent text sit on every tracker, ready for a later provider.
             </p>
           </article>
         </div>
@@ -74,76 +75,44 @@ export function LandingPage() {
 
       <section className="section alt" id="how">
         <div className="inner">
-          <p className="kicker">How it works</p>
-          <h2>Three jobs. Real reports. No login theater.</h2>
-          <p className="lede muted">
-            Version 1 ships with seeded Southwest projects so you can file a
-            report in the first minute. Everything stays in this browser until
-            you reset the demo.
-          </p>
+          <p className="kicker">How the bench works</p>
+          <h2>Make, save, collaborate, export.</h2>
           <div className="grid-3" style={{ marginTop: 28 }}>
             <article className="card">
               <div className="meta">01</div>
-              <h3>Pick a job</h3>
+              <h3>Switch manager</h3>
               <p className="muted">
-                Medical, highway, or multifamily punch. Each job already has a
-                superintendent and a number.
+                Ortiz, Keene, or Shah. Notes stay on the tracker so the next
+                person sees them.
               </p>
             </article>
             <article className="card">
               <div className="meta">02</div>
-              <h3>Write the day</h3>
+              <h3>File or import</h3>
               <p className="muted">
-                Weather, crew, work, delays, materials, visitors. Save a draft
-                or submit it.
+                Write a tracker, or bring a sheet whose columns already match
+                job_number, log_date, and work_completed.
               </p>
             </article>
             <article className="card">
               <div className="meta">03</div>
-              <h3>Keep the book</h3>
+              <h3>Sign the day</h3>
               <p className="muted">
-                Search every report, open a printable sheet, or restore the
-                sample set when you want a clean slate.
+                Typed or drawn signature, timestamp, role, and a stored intent
+                sentence.
               </p>
             </article>
           </div>
         </div>
       </section>
 
-      <section className="section" id="pricing">
-        <p className="kicker">Pricing</p>
-        <h2>Simple enough for a first job.</h2>
-        <div className="grid-3" style={{ marginTop: 28 }}>
-          <article className="card">
-            <div className="meta">Starter</div>
-            <div className="price">Free</div>
-            <p className="muted">This version 1 demo. One browser, three jobs, unlimited practice reports.</p>
-          </article>
-          <article className="card">
-            <div className="meta">Crew</div>
-            <div className="price">$29</div>
-            <p className="muted">Per superintendent / month when accounts and cloud sync land.</p>
-            <ul className="list muted">
-              <li>Shared project book</li>
-              <li>Photo attachments</li>
-              <li>Email a PDF at 4:00</li>
-            </ul>
-          </article>
-          <article className="card">
-            <div className="meta">Company</div>
-            <div className="price">Talk</div>
-            <p className="muted">Multi-job rollup for GCs who want every super on the same page.</p>
-          </article>
-        </div>
-      </section>
-
       <section className="cta-band">
         <div>
-          <h2>File today's report.</h2>
-          <p className="muted">The sample book is already open. Add a line and see it stick.</p>
+          <h2>Open the sample book.</h2>
+          <p className="muted">Three jobs, eight people, and live Excel headers.</p>
         </div>
-        <Link className="btn" to="/app/reports/new" style={{ background: "var(--amber)", color: "var(--ink)" }}>
-          Write a daily
+        <Link className="btn" to="/app" style={{ background: "var(--amber)", color: "var(--ink)" }}>
+          Job Trackers
         </Link>
       </section>
     </main>

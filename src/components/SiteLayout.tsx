@@ -9,18 +9,18 @@ export function SiteLayout() {
           Construction Reports
         </NavLink>
         <nav className="nav" aria-label="Primary">
+          <NavLink to="/app">Job Trackers</NavLink>
+          <NavLink to="/app/import-export">Import / Export</NavLink>
           <a href="#product">Product</a>
-          <a href="#how">How it works</a>
-          <a href="#pricing">Pricing</a>
         </nav>
         <NavLink className="btn" to="/app">
-          Open the log
+          Open the book
         </NavLink>
       </header>
       <Outlet />
       <footer className="site-footer">
         <div>Construction Reports · Version 1</div>
-        <div>Built for supers who still write the day down.</div>
+        <div>Small-team construction management. Track, sign, export.</div>
       </footer>
     </>
   );

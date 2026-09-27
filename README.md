@@ -1,8 +1,8 @@
 # Construction Reports
 
-Version 1 of the Construction Reports website: a field-ready daily jobsite log for superintendents.
+Small-team construction management: Job Trackers, employee profiles, Excel import/export, and e-signature infrastructure.
 
-The marketing site explains the product. The app ships with three Southwest sample jobs so you can file, search, edit, print, and delete daily reports in the browser. Reports persist in `localStorage` until you reset the demo.
+The marketing site explains the product. The app ships with three Southwest jobs, eight people, and three managers so you can file trackers, assign profiles, leave notes, sign, and move the same columns through Excel. Data stays in `localStorage` until you reset the demo.
 
 ## Scripts
 
@@ -17,8 +17,12 @@ npm run preview
 ## App routes
 
 - `/` marketing site
-- `/app` job board
-- `/app/reports` full log + search
-- `/app/reports/new` file a daily
-- `/app/projects/:id` one job
-- `/app/reports/:id` printable report
+- `/app` Job Trackers
+- `/app/trackers/new` file a tracker
+- `/app/trackers/:id` printable tracker + manager notes
+- `/app/people` employee profiles
+- `/app/import-export` Excel export, template, import, column map
+
+## Excel sheets
+
+`jobs`, `employees`, `daily_logs`, `crew` — stable snake_case headers (`job_number`, `log_date`, `work_completed`, `assigned_employee_numbers`, …). Import upserts on those keys.

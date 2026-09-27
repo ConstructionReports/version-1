@@ -1,13 +1,15 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { AppShell } from "./components/AppShell";
 import { SiteLayout } from "./components/SiteLayout";
-import { DashboardPage } from "./pages/DashboardPage";
-import { EditReportPage } from "./pages/EditReportPage";
+import { EditTrackerPage } from "./pages/EditTrackerPage";
+import { EmployeePage } from "./pages/EmployeePage";
+import { ImportExportPage } from "./pages/ImportExportPage";
 import { LandingPage } from "./pages/LandingPage";
-import { NewReportPage } from "./pages/NewReportPage";
-import { ProjectPage } from "./pages/ProjectPage";
-import { ReportPage } from "./pages/ReportPage";
-import { ReportsPage } from "./pages/ReportsPage";
+import { NewEmployeePage } from "./pages/NewEmployeePage";
+import { NewTrackerPage } from "./pages/NewTrackerPage";
+import { PeoplePage } from "./pages/PeoplePage";
+import { TrackerPage } from "./pages/TrackerPage";
+import { TrackersPage } from "./pages/TrackersPage";
 
 export default function App() {
   return (
@@ -20,12 +22,16 @@ export default function App() {
           <Route path="/" element={<LandingPage />} />
         </Route>
         <Route path="/app" element={<AppShell />}>
-          <Route index element={<DashboardPage />} />
-          <Route path="reports" element={<ReportsPage />} />
-          <Route path="reports/new" element={<NewReportPage />} />
-          <Route path="reports/:reportId/edit" element={<EditReportPage />} />
-          <Route path="reports/:reportId" element={<ReportPage />} />
-          <Route path="projects/:projectId" element={<ProjectPage />} />
+          <Route index element={<TrackersPage />} />
+          <Route path="trackers/new" element={<NewTrackerPage />} />
+          <Route path="trackers/:trackerId/edit" element={<EditTrackerPage />} />
+          <Route path="trackers/:trackerId" element={<TrackerPage />} />
+          <Route path="people" element={<PeoplePage />} />
+          <Route path="people/new" element={<NewEmployeePage />} />
+          <Route path="people/:employeeId" element={<EmployeePage />} />
+          <Route path="import-export" element={<ImportExportPage />} />
+          <Route path="reports/*" element={<Navigate to="/app" replace />} />
+          <Route path="projects/*" element={<Navigate to="/app" replace />} />
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
